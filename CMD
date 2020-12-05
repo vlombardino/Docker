@@ -1,0 +1,2 @@
+#update all images to latest
+docker images --format "{{.Repository}}:{{.Tag}}" | grep ':latest' | xargs -L1 docker pull;
