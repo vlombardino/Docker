@@ -14,3 +14,11 @@ sudo systemctl daemon-reload
 
 # Restart Docker.
 sudo systemctl restart docker
+
+=============================================================
+
+## Docker Snap Install
+sudo vim /etc/systemd/system/snap.docker.dockerd.service
+---
+ExecStart=/usr/bin/snap run docker.dockerd -H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock
+---
