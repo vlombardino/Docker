@@ -1,0 +1,16 @@
+# Create directory for file
+sudo mkdir -p /etc/systemd/system/docker.service.d
+
+# Create new file for daemon options
+sudo vi /etc/systemd/system/docker.service.d/options.conf
+---
+[Service]
+ExecStart=
+ExecStart=/usr/bin/dockerd -H unix:// -H tcp://0.0.0.0:2375
+---
+
+# Reload the systemd daemon.
+sudo systemctl daemon-reload
+
+# Restart Docker.
+sudo systemctl restart docker
