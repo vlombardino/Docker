@@ -1,5 +1,5 @@
 # Update with [Watchtower](https://github.com/containrrr/watchtower)
-Watchtower will update all containers then upgrade and recreate the containers.
+Watchtower will update all images then upgrade and recreate the containers.
 ```
 docker run --rm -v /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower --run-once --debug --cleanup
 ```
