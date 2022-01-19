@@ -119,3 +119,10 @@ docker create \
   --restart unless-stopped \
   tomcat9
 ```
+
+## Refrences
+https://hub.docker.com/_/tomcat
+
+https://pranavmalvawala.com/run-script-only-on-first-start-up
+
+https://octopus.com/blog/deployable-tomcat-docker-containers
