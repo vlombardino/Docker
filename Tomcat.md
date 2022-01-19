@@ -111,6 +111,7 @@ docker create \
   --name=tomcat9 \
   -e PUID=1000 \
   -e PGID=1000 \
+  -e UMASK=000 \
   -e TZ=America/Los_Angeles \
   -p 8080:8080 \
   -p 8443:8443 \
