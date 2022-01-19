@@ -104,3 +104,17 @@ vim /usr/local/tomcat/webapps/host-manager/META-INF/context.xml
 allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" /> -->
 ################################################
 ```
+
+## Docker cli
+```
+docker create \
+  --name=tomcat9 \
+  -e PUID=1000 \
+  -e PGID=1000 \
+  -e TZ=America/Los_Angeles \
+  -p 8080:8080 \
+  -p 8443:8443 \
+  -v /path/to/tomcat:/srv/tomcat \
+  --restart unless-stopped \
+  tomcat9
+```
