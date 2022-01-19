@@ -9,7 +9,7 @@ vim Dockerfile
 FROM tomcat:9.0.56-jdk17-openjdk
 
 LABEL maintainer="vlombardino" \
-      name="tomcat9-server" \
+      name="tomcat9" \
       version="0.1"
 
 COPY entrypoint.sh /usr/local/bin/
