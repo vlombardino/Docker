@@ -1,11 +1,11 @@
-# Update with [Watchtower](https://github.com/containrrr/watchtower)
-Watchtower will update all images then upgrade and recreate the containers.
+## [Watchtower](https://github.com/containrrr/watchtower)
+> Watchtower will update all images then upgrade and recreate the containers.
 ```
 docker run --rm -v /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower --run-once --debug --cleanup
 ```
 ---
-
-Update all images to latest
+## [Docker Image Pull](https://docs.docker.com/engine/reference/commandline/image_pull/)
+> Update all images to latest
 ```
 docker images --format "{{.Repository}}:{{.Tag}}" | grep ':latest' | xargs -L1 docker pull;
 ```
