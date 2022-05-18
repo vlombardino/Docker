@@ -93,7 +93,7 @@ docker create \
 	-e OPENVPN_USER=USERNAME \
 	-e OPENVPN_PASSWORD=PASSWORD \
 	-e SERVER_REGIONS=Switzerland \
-	-p 9117:9117 `#jackett` \
+	-p 9117:9117 `#Jackett` \
  	-p 8112:8112 `#Deluge` \
  	-p 6881:6881 `#Deluge` \
  	-p 6881:6881/udp `#Deluge` \
