@@ -97,6 +97,7 @@ docker create \
  	-p 8112:8112 `#Deluge` \
  	-p 6881:6881 `#Deluge` \
  	-p 6881:6881/udp `#Deluge` \
+	--restart unless-stopped \
 	qmcgaw/gluetun
 ```
 [Jackett](https://hub.docker.com/r/linuxserver/jackett)
