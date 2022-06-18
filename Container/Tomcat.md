@@ -76,7 +76,7 @@ Move conf folder
 mv /home/docker/tomcat/webapps/conf /home/docker/tomcat/
 ```
 
-Edit context.xml configuration file in manager folder
+Edit ```context.xml``` configuration file in manager folder
 ```
 nano /home/docker/tomcat/webapps/manager/META-INF/context.xml
 
@@ -85,7 +85,7 @@ nano /home/docker/tomcat/webapps/manager/META-INF/context.xml
          allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" /> -->
 ################################################
 ```
-Edit context.xml configuration file in host-manager folder
+Edit ```context.xml``` configuration file in host-manager folder
 ```
 nano /home/docker/tomcat/webapps/host-manager/META-INF/context.xml
 
@@ -95,7 +95,7 @@ nano /home/docker/tomcat/webapps/host-manager/META-INF/context.xml
 ################################################
 ```
 
-Edit tomcat-users.xml configuration file
+Edit ```tomcat-users.xml``` configuration file
 ```         
 nano /home/docker/tomcat/conf/tomcat-users.xml
 
@@ -140,12 +140,12 @@ Create keystore
 keytool -genkey -keysize 2048 -keyalg RSA -noprompt -alias tomcat -dname "CN=domain.local, OU=IT, O=Business, L=City(full name), S=State(full name), C=USA" -keystore /home/docker/tomcat/ssl/tomcat.local.jks -validity 9999 -storepass PASSWORD -keypass PASSWORD
 ```
 
-Copy keystore into conf folder
+Copy keystore into ```conf``` folder
 ```
 cp /home/docker/tomcat/ssl/tomcat.local.jks /home/docker/tomcat/conf/
 ```
 
-Edit server.xml
+Edit ```server.xml```
 ```
 nano /home/docker/tomcat/conf/server.xml
 
