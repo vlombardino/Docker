@@ -49,5 +49,5 @@ openssl rand -hex 64
 > Password: demo
 
 ### References
-https://github.com/plankanban/planka
+https://github.com/plankanban/planka \
 https://mariushosting.com/how-to-install-planka-on-your-synology-nas/
