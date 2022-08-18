@@ -1,5 +1,5 @@
-  ### [Emulatorjs](https://github.com/linuxserver/docker-emulatorjs)
-> Proxmox Container
+## [Emulatorjs](https://github.com/linuxserver/docker-emulatorjs)
+#### Proxmox Container
 ```
 docker run -d \
   --name=emulatorjs \
@@ -14,5 +14,17 @@ docker run -d \
   lscr.io/linuxserver/emulatorjs:latest
 ```
 
-### References
+## Controls
+#### Keyboard
+```
+Menu Settings -> F1 
+Insert Coin -> 5 & 6
+Start & Select -> Enter & R-Shift
+Right, Left, Up, Down -> Arror Keys
+Buttons -> Z, X, L-CTR, L-ALT, L-Shift
+Quit Game -> Esc (Twice), ALT + Right Arrow
+```
+
+
+## References
 https://github.com/linuxserver/docker-emulatorjs
