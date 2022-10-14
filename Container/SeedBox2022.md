@@ -18,7 +18,7 @@ sudo apt install docker-ce docker-ce-cli containerd.io docker-compose
 
 ### Docker Compose install
 ```
-sudo curl -L "https://github.com/docker/compose/releases/download/v2.5.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo curl -L "https://github.com/docker/compose/releases/download/v2.11.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 ```
 ### Check Docker & Docker Compose version
