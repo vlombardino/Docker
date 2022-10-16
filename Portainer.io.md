@@ -1,11 +1,11 @@
-# Installing Portainer 2.0
+# Installing Portainer
 Create *portainer_data* volume
 ```
 docker volume create portainer_data
 ```
-Command to install Portainer 2.0.
+Command to install Portainer.
 ```
-docker run -d -p 9000:9000 -p 8000:8000 --name portainer --restart always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce
+docker run -d -p 9443:9443 -p 8000:8000 --name portainer --restart always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
 ```
 ---
 # Add additional Environments
