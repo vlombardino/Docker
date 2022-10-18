@@ -3,6 +3,7 @@
 ### Operating System & Software
 - Proxmox VM
 - Ubuntu server 22.04
+- [GPU Passthrough](https://github.com/vlombardino/Proxmox/blob/master/VM/GPU%20Passthrough%20Ubuntu.md)
 - Docker
 
 ---
@@ -41,7 +42,7 @@ docker -v
 docker-compose -v
 ```
 
-### [Proxmox GPU passthrough](https://github.com/vlombardino/Proxmox/blob/master/VM/GPU%20Passthrough%20Ubuntu.md)
+### Nvidia drivers
 ```
 ubuntu-drivers devices
 
