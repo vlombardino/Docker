@@ -42,13 +42,6 @@ docker -v
 docker-compose -v
 ```
 
-### [Install portainer](https://github.com/vlombardino/Docker/blob/main/Portainer.io.md)
-```
-docker volume create portainer_data
-
-docker run -d -p 9000:9000 -p 8000:8000 --name portainer --restart always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
-```
-
 ### [Proxmox GPU passthrough](https://github.com/vlombardino/Proxmox/blob/master/VM/GPU%20Passthrough%20Ubuntu.md)
 ```
 ubuntu-drivers devices
@@ -88,7 +81,15 @@ docker volume create \
 	media
 ```
 
-### Docker container ([plex](https://hub.docker.com/r/linuxserver/plex))
+### Docker containers
+>[Portainer](https://github.com/vlombardino/Docker/blob/main/Portainer.io.md)
+```
+docker volume create portainer_data
+
+docker run -d -p 9000:9000 -p 8000:8000 --name portainer --restart always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
+```
+
+>[Plex](https://hub.docker.com/r/linuxserver/plex)\
 > Optional: [-e PLEX_CLAIM=#token](https://plex.tv/claim)
 ```
 docker run -d \
