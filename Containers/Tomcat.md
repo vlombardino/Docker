@@ -1,7 +1,13 @@
 # Tomcat
-Running Tomcat 10 Docker within CT on Proxmox
 
-## Setup Ubuntu container
+### Operating System & Software
+- Proxmox CT
+- Ubuntu server 22.04
+- Tomcat 10
+
+---
+
+### Setup Ubuntu container
 Update & Upgrade
 ```
 apt update && apt upgrade -y
@@ -26,12 +32,12 @@ Command to generate the ```/etc/default/locale```
 ```
 update-locale LANG=en_US.UTF-8
 ```
-## Install required software
+### Install required software
 ```
 apt install openjdk-17-jdk apt-transport-https ca-certificates curl software-properties-common -y
 ```
 
-## Install Docker and Docker Compose
+### Install Docker and Docker Compose
 ```
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 
@@ -44,7 +50,7 @@ apt install docker-ce docker-ce-cli containerd.io docker-compose docker-compose-
 
 
 
-## Get required files from tomcat
+### Get required files from tomcat
 Create Tomcat 
 ```
 docker create \
@@ -75,7 +81,7 @@ docker container rm tomcat
 ```
 ---
 
-## Setup tomcat for docker install
+### Setup tomcat for docker install
 
 Move conf folder
 ```
@@ -129,7 +135,7 @@ docker create \
 docker container start tomcat
 ```
 
-## Self Signed Certificate
+### Self Signed Certificate
 
 Stop tomcat container
 ```
