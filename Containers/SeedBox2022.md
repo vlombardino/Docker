@@ -1,8 +1,11 @@
 # Proxmox VM
 
-### Operating System
-> Ubuntu server 22.04\
-> Username = box
+### Operating System & Software
+- Ubuntu server 22.04
+- Username = box
+- Docker
+
+---
 
 ### Docker install
 ```
