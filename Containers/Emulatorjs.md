@@ -1,5 +1,13 @@
 ## [Emulatorjs](https://github.com/linuxserver/docker-emulatorjs)
-#### Proxmox Container
+
+### Operating System & Software
+- Proxmox CT
+- Ubuntu 22.04
+- Docker
+
+---
+
+### Proxmox Container
 ```
 docker run -d \
   --name=emulatorjs \
@@ -14,7 +22,7 @@ docker run -d \
   lscr.io/linuxserver/emulatorjs:latest
 ```
 
-## Controls
+### Controls
 ####  Quick Keyboard Controls
 ```
 Menu Settings = F1 
