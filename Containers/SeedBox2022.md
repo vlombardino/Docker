@@ -13,20 +13,16 @@ sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmo
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
 sudo apt update
+
 sudo apt install docker-ce docker-ce-cli containerd.io docker-compose
 ```
 
 ### Docker Compose install
 ```
 sudo curl -L "https://github.com/docker/compose/releases/download/v2.11.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
 sudo chmod +x /usr/local/bin/docker-compose
 ```
-### Check Docker & Docker Compose version
-```
-docker -v
-docker-compose -v
-```
-
 ### Allow user to configure Docker
 > Requires a reboot
 ```
@@ -34,9 +30,17 @@ sudo usermod -aG docker $USER
 sudo reboot
 ```
 
+### Check Docker & Docker Compose version
+```
+docker -v
+
+docker-compose -v
+```
+
 ### Create folders
 ```
 mkdir -p /home/box/docker/{filebrowser,jackett,nzbget,deluge,bazarr,sonarr,radarr}/config
+
 mkdir -p /home/box/downloads/{completed/{movies,music,other,tv},incomplete,intermediate,nzb,queue,tmp,watch/{converted,storage,watch}}
 ```
 
