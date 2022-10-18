@@ -57,7 +57,7 @@ docker create \
 	tomcat:10-jre17-temurin
 ```
 	
-Start tomcat container and config files in container
+Start tomcat container and modify files in container
 ```
 docker container start tomcat
 
