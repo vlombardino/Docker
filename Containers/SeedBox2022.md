@@ -1,6 +1,7 @@
 # SeedBox
 
 ### Operating System & Software
+- Proxmox VM
 - Ubuntu server 22.04
 - Username = box
 - Docker
