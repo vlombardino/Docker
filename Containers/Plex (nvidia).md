@@ -6,6 +6,8 @@
 - Username = box
 - Docker
 
+---
+
 ### Docker install
 ```
 sudo apt install apt-transport-https ca-certificates curl software-properties-common
