@@ -1,4 +1,4 @@
-# Proxmox VM
+# SeedBox
 
 ### Operating System & Software
 - Ubuntu server 22.04
