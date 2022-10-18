@@ -60,11 +60,17 @@ docker create \
 Start tomcat and setup config files
 ```
 docker container start tomcat
+
 docker exec -it tomcat sh
+
 cp -r /usr/local/tomcat/webapps.dist/* /usr/local/tomcat/webapps/
+
 cp -r /usr/local/tomcat/conf /usr/local/tomcat/webapps/
+
 exit
+
 docker container stop tomcat
+
 docker container rm tomcat
 ```
 ---
