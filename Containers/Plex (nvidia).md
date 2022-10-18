@@ -106,3 +106,16 @@ docker run -d \
   --restart unless-stopped \
   lscr.io/linuxserver/plex:latest
 ```
+
+>[Tautulli](https://hub.docker.com/r/linuxserver/tautulli)
+```
+docker run -d \
+  --name=tautulli \
+  -e PUID=1000 \
+  -e PGID=1000 \
+  -e TZ=America/Los_Angeles \
+  -p 8181:8181 \
+  -v /home/plex/docker/tautulli/config:/config \
+  --restart unless-stopped \
+  lscr.io/linuxserver/tautulli:latest
+```
