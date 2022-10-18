@@ -1,4 +1,4 @@
-# Proxmox VM
+# Plex (nvidia)
 
 ### Operating System
 > Ubuntu server 22.04\
