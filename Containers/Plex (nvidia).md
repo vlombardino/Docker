@@ -63,7 +63,9 @@ distribution=$(. /etc/os-release;echo $ID$VERSION_ID) \
 	sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
 
 sudo apt update
+
 sudo apt install nvidia-docker2 -y
+
 sudo systemctl restart docker
 ```
 
