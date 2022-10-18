@@ -1,5 +1,11 @@
-### [Planka](https://github.com/plankanban/planka)
-> Synology Install
+# [Planka](https://github.com/plankanban/planka)
+
+Operating System & Software
+- Synology
+- Docker
+
+---
+
 ```
 version: '3'
 
