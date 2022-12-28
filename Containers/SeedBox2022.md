@@ -52,7 +52,7 @@ mkdir -p /home/box/downloads/{completed/{movies,music,other,tv},incomplete,inter
 ```
 docker volume create \
 	--driver local \
-	--opt type=nfs4 \
+	--opt type nfs4 \
 	--opt o=addr=192.168.1.10,rw,noatime,rsize=8192,wsize=8192,tcp,timeo=14 \
 	--opt device=:/volume1/PlexMedia/TV \
 	tv
@@ -95,9 +95,9 @@ docker create \
 
 ```
 docker create \
-	--name=gluetun \
+	--name gluetun \
 	--device /dev/net/tun \
-	--cap-add=NET_ADMIN \
+	--cap-add NET_ADMIN \
 	-e VPN_SERVICE_PROVIDER=nordvpn \
 	-e OPENVPN_USER=USERNAME \
 	-e OPENVPN_PASSWORD=PASSWORD \
@@ -112,12 +112,12 @@ docker create \
 [Jackett](https://hub.docker.com/r/linuxserver/jackett)
 ```
 docker create \
-	--name=jackett \
+	--name jackett \
 	-e PUID=0 \
 	-e PGID=0 \
 	-e TZ=America/Los_Angeles \
 	-e AUTO_UPDATE=true \
-	--net=container:gluetun `#gluetun` \
+	--net container:gluetun `#gluetun` \
 	-v /home/box/docker/jackett/config:/config \
 	-v /home/box/downloads/tmp:/downloads \
 	--restart unless-stopped \
@@ -127,12 +127,12 @@ docker create \
 
 ```
 docker run -d \
- 	--name=deluge \
+ 	--name deluge \
  	-e PUID=0 \
  	-e PGID=0 \
  	-e TZ=America/Los_Angeles \
  	-e DELUGE_LOGLEVEL=error `#optional` \
-	--net=container:gluetun `#gluetun` \
+	--net container:gluetun `#gluetun` \
  	-v /home/box/docker/deluge/config:/config \
  	-v /home/box/downloads:/downloads \
  	--restart unless-stopped \
@@ -141,7 +141,7 @@ docker run -d \
 [Nzbget](https://hub.docker.com/r/linuxserver/nzbget)
 ```
 docker create \
-	--name=nzbget \
+	--name nzbget \
 	-e PUID=0 \
 	-e PGID=0 \
 	-e TZ=America/Los_Angeles \
@@ -154,7 +154,7 @@ docker create \
 [Sonarr](https://hub.docker.com/r/linuxserver/sonarr)
 ```
 docker create \
-	--name=sonarr \
+	--name sonarr \
 	-e PUID=0 \
 	-e PGID=0 \
 	-e TZ=America/Los_Angeles \
@@ -168,7 +168,7 @@ docker create \
 [Radarr](https://hub.docker.com/r/linuxserver/radarr)
 ```
 docker create \
-	--name=radarr \
+	--name radarr \
 	-e PUID=0 \
 	-e PGID=0 \
 	-e TZ=America/Los_Angeles \
@@ -182,7 +182,7 @@ docker create \
 [Bazarr](https://hub.docker.com/r/linuxserver/bazarr)
 ```
 docker create \
-	--name=bazarr \
+	--name bazarr \
 	-e PUID=0 \
 	-e PGID=0 \
 	-e TZ=America/Los_Angeles \
