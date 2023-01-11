@@ -9,7 +9,7 @@
 
 Proxmox CT
 ```
-docker run -d 
+docker run -d \
 	--name webpdf \
 	-e TZ=America/Los_Angeles \
 	-p 8844:8080 \
