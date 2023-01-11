@@ -7,7 +7,7 @@
 
 ---
 
-Proxmox CT
+Proxmox CT (docker cli)
 ```
 docker run -d \
 	--name webpdf \
@@ -16,7 +16,7 @@ docker run -d \
 	--restart unless-stopped \
 	softvisiondev/webpdf:latest
 ```
-Synology
+Synology (docker cli)
 ```
 docker run -d --name webpdf -e TZ=America/Los_Angeles -p 8844:8080 --restart unless-stopped softvisiondev/webpdf:latest
 ```
