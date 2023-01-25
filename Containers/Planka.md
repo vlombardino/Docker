@@ -1,6 +1,6 @@
 # [Planka](https://github.com/plankanban/planka)
 
-Operating System & Software
+### Operating System
 - Synology
 - Docker
 
