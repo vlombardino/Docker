@@ -25,3 +25,12 @@ docker run -d \
   --restart unless-stopped \
   lscr.io/linuxserver/code-server:latest
 ```
+
+### Notes
+Fix github error
+```
+docker exec -it code-server sh
+
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
+```
