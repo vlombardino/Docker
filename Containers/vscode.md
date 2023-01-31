@@ -6,7 +6,13 @@
 
 ---
 
-### Proxmox Container
+### Create folders
+docker -> vscode -> config -> workspace
+```
+mkdir -p /volume1/docker/vscode/config/workspace
+```
+
+### Synology Docker
 ```
 docker run -d \
   --name=code-server \
