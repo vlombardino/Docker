@@ -12,6 +12,12 @@ Install Portainer Agent
 ```
 docker run -d -p 9001:9001 --name portainer_agent --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/docker/volumes:/var/lib/docker/volumes portainer/agent:latest
 ```
+# Remove Portainer
+```
+docker stop portainer
+docker rm portainer
+docker volume rm portainer_data
+```
 
 ---
 ## Add additional Environments
@@ -43,13 +49,6 @@ sudo vim /etc/systemd/system/snap.docker.dockerd.service
 ####################ADD TEXT####################
 ExecStart=/usr/bin/snap run docker.dockerd -H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock
 ################################################
-```
-
-# Remove Portainer
-```
-docker stop portainer
-docker rm portainer
-docker volume rm portainer_data
 ```
 
 ---
