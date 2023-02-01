@@ -37,12 +37,19 @@ Restart Docker.
 ```
 sudo systemctl restart docker
 ```
-### Docker Snap Install
+Docker Snap Install
 ```
 sudo vim /etc/systemd/system/snap.docker.dockerd.service
 ####################ADD TEXT####################
 ExecStart=/usr/bin/snap run docker.dockerd -H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock
 ################################################
+```
+
+# Remove Portainer
+```
+docker stop portainer
+docker rm portainer
+docker volume rm portainer_data
 ```
 
 ---
