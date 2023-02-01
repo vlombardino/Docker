@@ -15,6 +15,7 @@ docker run -d -p 9001:9001 --name portainer_agent --restart=always -v /var/run/d
 
 ---
 ## Add additional Environments
+### Connect to Docker with systemd
 Create directory for file.
 ```
 sudo mkdir -p /etc/systemd/system/docker.service.d
@@ -36,7 +37,7 @@ Restart Docker.
 ```
 sudo systemctl restart docker
 ```
-## Docker Snap Install
+### Docker Snap Install
 ```
 sudo vim /etc/systemd/system/snap.docker.dockerd.service
 ####################ADD TEXT####################
