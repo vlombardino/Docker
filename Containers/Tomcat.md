@@ -9,11 +9,11 @@
 
 ### Setup Ubuntu container
 Update & Upgrade
-```
+```bash
 apt update && apt upgrade -y
 ```
 Allow root ssh access by adding PermitRootLogin
-```
+```bash
 nano /etc/ssh/sshd_config
 
 ####################ADD TEXT####################
@@ -21,24 +21,24 @@ PermitRootLogin yes
 ################################################
 ```
 Restart ssh server
-```
+```bash
 service ssh restart
 ```
 Set Local unicode
-```
+```bash
 locale-gen en_US.UTF-8
 ```
 Command to generate the ```/etc/default/locale```
-```
+```bash
 update-locale LANG=en_US.UTF-8
 ```
 ### Install required software
-```
+```bash
 apt install openjdk-17-jdk apt-transport-https ca-certificates curl software-properties-common -y
 ```
 
 ### Install Docker and Docker Compose
-```
+```bash
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
@@ -52,7 +52,7 @@ apt install docker-ce docker-ce-cli containerd.io docker-compose docker-compose-
 
 ### Get required files from tomcat
 Create Tomcat 
-```
+```bash
 docker create \
 	--name=tomcat \
 	-e TZ=America/Los_Angeles \
@@ -64,7 +64,7 @@ docker create \
 ```
 	
 Start tomcat container and modify files in container
-```
+```bash
 docker container start tomcat
 
 docker exec -it tomcat sh
@@ -84,12 +84,12 @@ docker container rm tomcat
 ### Setup tomcat for docker install
 
 Move conf folder
-```
+```bash
 mv /home/docker/tomcat/webapps/conf /home/docker/tomcat/
 ```
 
 Edit ```context.xml``` configuration file in manager folder
-```
+```bash
 nano /home/docker/tomcat/webapps/manager/META-INF/context.xml
 
 ####################MOD TEXT####################
@@ -98,7 +98,7 @@ nano /home/docker/tomcat/webapps/manager/META-INF/context.xml
 ################################################
 ```
 Edit ```context.xml``` configuration file in host-manager folder
-```
+```bash
 nano /home/docker/tomcat/webapps/host-manager/META-INF/context.xml
 
 ####################MOD TEXT####################
@@ -108,7 +108,7 @@ nano /home/docker/tomcat/webapps/host-manager/META-INF/context.xml
 ```
 
 Edit ```tomcat-users.xml``` configuration file
-```         
+```bash         
 nano /home/docker/tomcat/conf/tomcat-users.xml
 
 ####################ADD TEXT####################
@@ -121,7 +121,7 @@ nano /home/docker/tomcat/conf/tomcat-users.xml
 ```
 
 Recreate Tomcat with file changes
-```
+```bash
 docker create \
 	--name=tomcat \
 	-e TZ=America/Los_Angeles \
@@ -138,27 +138,27 @@ docker container start tomcat
 ### Self Signed Certificate
 
 Stop tomcat container
-```
+```bash
 docker container stop tomcat
 ```
 
 Make working directories
-```
+```bash
 mkdir /home/docker/tomcat/ssl && cd /home/docker/tomcat/ssl
 ```
 
 Create keystore
-```
+```bash
 keytool -genkey -keysize 2048 -keyalg RSA -noprompt -alias tomcat -dname "CN=domain.local, OU=IT, O=Business, L=City(full name), S=State(full name), C=USA" -keystore /home/docker/tomcat/ssl/tomcat.local.jks -validity 9999 -storepass PASSWORD -keypass PASSWORD
 ```
 
 Copy keystore into ```conf``` folder
-```
+```bash
 cp /home/docker/tomcat/ssl/tomcat.local.jks /home/docker/tomcat/conf/
 ```
 
 Edit ```server.xml```
-```
+```bash
 nano /home/docker/tomcat/conf/server.xml
 
 ####################ADD TEXT####################
@@ -179,6 +179,6 @@ nano /home/docker/tomcat/conf/server.xml
 ```
 
 Start tomcat container
-```
+```bash
 docker container start tomcat
 ```

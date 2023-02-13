@@ -8,12 +8,12 @@
 
 ### Create folders
 docker -> vscode -> config -> workspace
-```
+```bash
 mkdir -p /volume1/docker/vscode/config/workspace
 ```
 
 ### Synology Docker
-```
+```bash
 docker run -d \
   --name=code-server \
   -e PUID=1026 \
@@ -28,7 +28,7 @@ docker run -d \
 
 ### Notes
 Fix github error
-```
+```bash
 docker exec -it code-server sh
 
 git config --global user.email "you@example.com"

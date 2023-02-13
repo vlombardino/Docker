@@ -6,7 +6,7 @@
 
 ---
 
-```
+```yaml
 version: '3'
 
 services:

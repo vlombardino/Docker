@@ -3,7 +3,7 @@
 ## Build Tomcat Image
 
 Dockerfile
-```
+```bash
 vim Dockerfile
 ####################ADD TEXT####################
 FROM tomcat:9.0.56-jdk17-openjdk
@@ -34,7 +34,7 @@ CMD ["catalina.sh", "run"]
 ```
 
 Create entrypoint file
-```
+```bash
 vim entrypoint.sh
 ####################ADD TEXT####################
 #!/bin/sh
@@ -55,7 +55,7 @@ exec "$@"
 ################################################
 ```
 Build image
-```
+```bash
 docker build -t tomcat9 .
 or
 docker build -f Dockerfile -t tomcat9 .
@@ -73,7 +73,7 @@ Modify the following files:
 ---
 
 Configure Tomcat user configuration file. Change USER & PASS
-```
+```bash
 cp /usr/local/tomcat/conf/tomcat-users.xml /usr/local/tomcat/conf/tomcat-users.xml.orig
 vim /usr/local/tomcat/conf/tomcat-users.xml
 ####################ADD TEXT####################
@@ -86,7 +86,7 @@ vim /usr/local/tomcat/conf/tomcat-users.xml
 ```
 
 Edit Tomcat context file for manager. Comment out block.
-```
+```bash
 cp /usr/local/tomcat/webapps/manager/META-INF/context.xml /usr/local/tomcat/webapps/manager/META-INF/context.xml.orig
 vim /usr/local/tomcat/webapps/manager/META-INF/context.xml
 ####################MOD TEXT####################
@@ -96,7 +96,7 @@ allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" /> -->
 ```
 
 Edit Tomcat context file for host-manager. Comment out block.
-```
+```bash
 cp /usr/local/tomcat/webapps/host-manager/META-INF/context.xml /usr/local/tomcat/webapps/host-manager/META-INF/context.xml.orig
 vim /usr/local/tomcat/webapps/host-manager/META-INF/context.xml
 ####################MOD TEXT####################
@@ -106,7 +106,7 @@ allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" /> -->
 ```
 
 ## Docker cli
-```
+```bash
 docker create \
   --name=tomcat9 \
   -e PUID=1000 \

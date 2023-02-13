@@ -8,7 +8,7 @@
 ---
 
 Proxmox CT (docker cli)
-```
+```bash
 docker run -d \
 	--name webpdf \
 	-e TZ=America/Los_Angeles \
@@ -17,7 +17,7 @@ docker run -d \
 	softvisiondev/webpdf:latest
 ```
 Synology (docker cli)
-```
+```bash
 docker run -d --name webpdf -e TZ=America/Los_Angeles -p 8844:8080 --restart unless-stopped softvisiondev/webpdf:latest
 ```
 ---
