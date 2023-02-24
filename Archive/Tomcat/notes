@@ -1,0 +1,71 @@
+Build command:
+docker build -t tomcat9 .
+docker build -t remotetm .
+
+docker exec remotetm /bin/sh -c RemoteTM-backup
+
+ENV name John Dow
+ENTRYPOINT ["/bin/bash", "-c", "echo Hello, $name"]
+
+ENV webapps_location webapps
+RUN sed -i 's/webapps/$webapps_location/g' /etc/tomcat9/tomcat-users.xml
+
+####
+wget -nv --no-cookies https://www.maxprograms.com/downloads/RemoteTM/RemoteTM.war -O /home/vlombardino/Downloads/Docker/ROOT.war
+#####
+#!/bin/sh
+export CP="lib/services.jar:lib/utils.jar:lib/xml.jar:lib/ws-commons-util-1.0.2.jar:lib/xmlrpc-client-3.1.3.jar:lib/xmlrpc-common-3.1.3.jar"
+java -cp $CP com.maxprograms.webservice.BackupServer $1 $2 $3 $4 $5
+#####
+#####RemoteTM_backup notes
+https://www.maxprograms.com/downloads/RemoteTM_backup.zip
+unzip RemoteTM_backup.zip
+mv RemoteTM_backup scripts
+##backup scripts can run as root at any location but must be executable
+chmod +x ./scripts/*
+##export to a file owned by tomcat
+sudo -u tomcat8 sh -c "cd /opt/Maxprograms/scripts && ./BackupServer.sh localhost 8080 sysadmin ycPvebqBl7C1 /opt/Maxprograms/backup"
+#####
+ENV BACK_USER="sysadmin"
+ENV BACK_PASSWORD="nopassword"
+
+if [ ! -f "/srv/backup/RemoteTM" ]; then
+   mkdir -p /srv/backup/RemoteTM
+   chown tomcat:tomcat /srv/backup/RemoteTM
+fi
+
+sudo -u tomcat8 sh -c "cd /srv/files && ./BackupServer.sh localhost 8080 ${BACK_USER} ${BACK_PASSWORD} /srv/backup/RemoteTM"
+
+echo ${BACK_USER} ${BACK_PASSWORD}
+
+######
+#!/bin/bash
+
+#copy file to webapps
+if [ -f "/srv/RemoteTM.war" ]; then
+   mv /srv/RemoteTM.war /var/lib/tomcat9/webapps/ROOT.war
+fi
+
+#start tomcat
+exec /usr/share/tomcat9/bin/catalina.sh run
+
+
+ln -s /var/lib/tomcat9/webapps /srv/
+
+sed -i "s|TOM_USER|$TOM_USER|g" /etc/tomcat9/tomcat-users.xml
+sed -i "s|TOM_PASS|$TOM_PASS|g" /etc/tomcat9/tomcat-users.xml
+
+#add # to lines 14-16
+sed -i -e '14,16s/^/#/' test.txt
+
+#add # to lines 9-11 and 14-16
+sed -i -e '9,11s/^/#/' -e '14,16s/^/#/' test.txt
+
+
+Installed Software
+Ubuntu 20.04
+tomcat9-admin/now 9.0.31-1 all [installed,local]                                                                           
+tomcat9-common/now 9.0.31-1 all [installed,local]                                                                          
+tomcat9-docs/now 9.0.31-1 all [installed,local]                                                                            
+tomcat9-examples/now 9.0.31-1 all [installed,local]                                                                        
+tomcat9/now 9.0.31-1 all [installed,local]   

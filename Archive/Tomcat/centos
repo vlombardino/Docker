@@ -1,0 +1,65 @@
+FROM centos:8
+
+LABEL maintainer="vlombardino" \
+      name="RemoteTM_server" \
+      version="0.1"
+
+#set env variables
+ENV JAVA_HOME="/usr/lib/jvm/jre" \
+    CATALINA_BASE="/usr/local/tomcat8" \
+    CATALINA_HOME="/usr/local/tomcat8" \
+    CATALINA_TMPDIR="/tmp" \
+    TZ="America/Los_Angeles" \
+    TOM_USER="admin" \
+    TOM_PASS="admin" \
+    BACK_USER="sysadmin" \
+    BACK_PASSWORD="nopassword"
+
+#add needed files
+COPY files/ /tmp/
+    
+#install packages
+RUN yum update -y && \
+    yum install -y sudo \
+        tar -y \
+        unzip -y \
+    	wget \
+    	java-11-openjdk-headless && \
+    yum clean all && \
+    mkdir -p /srv/backup && \
+    mkdir -p /srv/files && \
+    mkdir -p /usr/local/tomcat8 && \
+    groupadd tomcat && \
+    useradd -M -s /bin/nologin -g tomcat -d /usr/local/tomcat8 tomcat && \
+    wget -nv --no-cookies "http://mirror.metrocast.net/apache/tomcat/tomcat-8/v8.5.56/bin/apache-tomcat-8.5.56.tar.gz" -O /tmp/tomcat8.tar.gz && \
+#   wget -nv --no-cookies "https://www.maxprograms.com/downloads/RemoteTM/RemoteTM.war" -O /tmp/RemoteTM.war && \
+#   wget -nv --no-cookies "https://www.maxprograms.com/downloads/RemoteTM_backup.zip" -O /tmp/RemoteTM_backup.zip && \
+#   unzip /tmp/RemoteTM_backup.zip -d /srv/files/ && \
+    tar -zxf /tmp/tomcat8.tar.gz -C /usr/local/tomcat8 --strip-components=1 && \
+    rm -rf /tmp/tomcat8.tar.gz && \
+    rm -rf /usr/local/tomcat8/webapps/ROOT && \
+    ln -s /usr/local/tomcat8/webapps /srv/ && \
+    ln -s /usr/local/tomcat8/logs /srv/ && \
+    ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone && \
+    chmod +x /tmp/docker-entrypoint.sh && \
+    chmod +x /tmp/RemoteTM-backup.sh && \
+    chmod -R g+r /usr/local/tomcat8/conf && \
+    chmod g+x /usr/local/tomcat8/conf && \
+    chown -R tomcat:tomcat /usr/local/tomcat8 /tmp/backup/ && \
+    mv /tmp/docker-entrypoint.sh /usr/local/bin/ && \
+    mv /tmp/RemoteTM-backup.sh /usr/local/bin/ && \
+    mv /tmp/tomcat-users.xml /usr/local/tomcat8/conf/tomcat-users.xml.mod && \
+    mv /tmp/backup/ /srv/files/
+#   mv /srv/files/RemoteTM_backup /srv/files/backup
+            
+#expose volumes
+VOLUME ["/srv/webapps","/srv/backup","/srv/logs","/opt"]
+
+#start tomcat
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
+
+#working dir
+WORKDIR /srv
+
+#tomcat port
+EXPOSE 8080

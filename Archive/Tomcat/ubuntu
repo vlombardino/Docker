@@ -1,0 +1,72 @@
+FROM ubuntu:20.04
+
+LABEL maintainer="vlombardino" \
+      name="RemoteTM_server" \
+      version="0.1"
+
+#set env variables
+ENV DEBIAN_FRONTEND="noninteractive" \
+    JAVA_HOME="/usr/lib/jvm/default-java" \
+    CATALINA_BASE="/var/lib/tomcat9" \
+    CATALINA_HOME="/usr/share/tomcat9" \
+    CATALINA_TMPDIR="/tmp" \
+    TZ="America/Los_Angeles" \
+    TOM_USER="admin" \
+    TOM_PASS="admin" \
+    BACK_USER="sysadmin" \
+    BACK_PASSWORD="nopassword"
+
+#add needed files
+COPY files/ /tmp/
+
+#install packages
+RUN apt-get update -y && \
+    apt-get upgrade -y && \
+    apt-get install -y \
+        sudo \
+        unzip \
+    	default-jdk-headless \
+        tomcat9 \
+        tomcat9-admin \
+        tomcat9-docs \
+        tomcat9-examples && \
+        net-tools && \
+    apt-get clean autoclean && \
+    apt-get autoremove -y && \
+    rm -rf /var/lib/apt/lists/* && \
+#configure image
+    echo "Set disable_coredump false" >> /etc/sudo.conf && \
+    mkdir -p /srv/backup && \
+    mkdir -p /srv/files && \
+
+    wget -q -nv --no-cookies "https://www.maxprograms.com/downloads/RemoteTM/RemoteTM.war" -O /tmp/RemoteTM.war && \
+    wget -q -nv --no-cookies "https://www.maxprograms.com/downloads/RemoteTM_backup.zip" -O /tmp/RemoteTM_backup.zip && \
+    wget -q -nv --no-cookies "https://github.com/vlombardino/RemoteTM/raw/master/files/tomcat-users.xml" -O /tmp/tomcat-users.xml && \
+    wget -q -nv --no-cookies "https://github.com/vlombardino/RemoteTM/raw/master/files/docker-entrypoint.sh" -O /tmp/docker-entrypoint.sh && \
+    wget -q -nv --no-cookies "https://github.com/vlombardino/RemoteTM/raw/master/files/RemoteTM-backup.sh" -O /tmp/RemoteTM-backup.sh && \
+    
+    unzip /tmp/RemoteTM_backup.zip -d /tmp/backup
+    
+    rm -rf /var/lib/tomcat9/webapps/ROOT && \
+    ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone && \
+    ln -s /var/lib/tomcat9/webapps /srv/ && \
+    ln -s /var/lib/tomcat9/logs /srv/ && \
+    chmod +x /tmp/docker-entrypoint.sh && \
+    chmod +x /tmp/RemoteTM-backup.sh && \
+    chown tomcat:tomcat /tmp/backup/* && \
+    mv /tmp/docker-entrypoint.sh /usr/local/bin/ && \
+    mv /tmp/RemoteTM-backup.sh /usr/local/bin/ && \
+    mv /tmp/tomcat-users.xml /etc/tomcat9/tomcat-users.xml.mod && \
+    mv /tmp/backup /srv/files/
+
+#expose volumes
+VOLUME ["/srv/webapps","/srv/backup","/srv/logs","/opt"]
+
+#setup tomcat-users file and start tomcat
+CMD ["/usr/local/bin/docker-entrypoint.sh"]
+
+#working dir
+WORKDIR /srv
+
+#tomcat port
+EXPOSE 8080
