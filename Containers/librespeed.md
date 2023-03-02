@@ -10,15 +10,15 @@
 Proxmox CT (docker cli)
 ```bash
 docker run -d \
-	--name librespeed \
-    -e PUID=1026 \
-    -e PGID=100 \
-	-e TZ=America/Los_Angeles \
-    -e PASSWORD=P@SSW0RD \
-	-p 8888:80 \
-    -v /volume1/docker/librespeed/config:/config \
-	--restart unless-stopped \
-	lscr.io/linuxserver/librespeed:latest
+  --name librespeed \
+  -e PUID=1026 \
+  -e PGID=100 \
+  -e TZ=America/Los_Angeles \
+  -e PASSWORD=P@SSW0RD \
+  -p 8888:80 \
+  -v /volume1/docker/librespeed/config:/config \
+  --restart unless-stopped \
+  lscr.io/linuxserver/librespeed:latest
 ```
 
 ---
