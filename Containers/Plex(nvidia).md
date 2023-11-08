@@ -43,6 +43,12 @@ docker-compose -v
 ```
 
 ### Nvidia drivers
+```
+ubuntu-drivers devices
+
+sudo ubuntu-drivers autoinstall
+```
+or
 ```bash
 ubuntu-drivers devices
 
