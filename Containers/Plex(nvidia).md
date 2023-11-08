@@ -52,7 +52,7 @@ or
 ```bash
 ubuntu-drivers devices
 
-sudo apt install nvidia-driver-515-server
+sudo apt install nvidia-driver-535-server
 
 sudo reboot
 ```
