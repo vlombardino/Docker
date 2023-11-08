@@ -98,7 +98,7 @@ docker run -d -p 9000:9000 -p 8000:8000 --name portainer --restart always -v /va
 ```
 
 >[Plex](https://hub.docker.com/r/linuxserver/plex)\
-> Optional: [-e PLEX_CLAIM=#token](https://plex.tv/claim)
+> Optional: [[-e PLEX_CLAIM=#token](https://plex.tv/claim)]
 ```bash
 docker run -d \
   --name=plex \
