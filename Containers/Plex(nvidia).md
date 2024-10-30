@@ -76,7 +76,7 @@ sudo systemctl restart docker
 ```bash
 nvidia-smi
 
-sudo docker run --rm --gpus all nvidia/cuda:11.0.3-base-ubuntu20.04 nvidia-smi
+sudo docker run --rm --gpus all nvidia/cuda:12.2.0-base-ubuntu22.04 nvidia-smi
 ```
 
 ### Docker volume (NFS)
